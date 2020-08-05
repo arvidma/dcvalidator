@@ -69,32 +69,13 @@ networks:
     
 ```
 Well this might happened to every newcomer with docker-compose!<br />
-<br />
-### This tool can analyze your docker-compose file with Github link or uploading the file.
-<br />
-<br />
-<br />
-<br />
-**********************************************************************************************************
 
 ## How to use it
-Just go [HERE](http://160.85.252.231:3000/) and enjoy!
 
+1. virtualenv venv
+2. pip wheel .
+3. install wheel wherever you feel like. it provides the command dcvalidate
 
-
-## How to make it better
-Make sure you have node.JS, npm, yarn, python 3, pip on your machine.
-<br />Then follow these steps:
-<br />
-<b>
-1. Download it as a zip file or clone it!
-2. Change your directory to the project directory   
-3. `yarn`
-4. `yarn install-client`
-5. `yarn install-server`
-6. `yarn dev`
-</b>
-You are ready to go!
 
 ## Can I contribute?
 <b>YES!</b> <br />
