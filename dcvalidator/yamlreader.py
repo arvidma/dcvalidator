@@ -1,5 +1,7 @@
 from ruamel.yaml import YAML
 from ruamel.yaml.constructor import SafeConstructor
+
+
 # def construct_yaml_map(self, node):
 #       # test if there are duplicate node keys
 #       data = []
@@ -29,8 +31,10 @@ def construct_yaml_map(self, node):
         val = self.construct_object(value_node, deep=True)
         data.append((key, val))
 
+
 SafeConstructor.add_constructor(u'tag:yaml.org,2002:map', construct_yaml_map)
 yaml_overwrited = YAML(typ='safe')
+
 
 def reader(content):
     try:
