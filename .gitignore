@@ -8,5 +8,10 @@ server.js
 validator-cli-test.py
 validatortest.py
 Note.txt
-venv
 _*
+
+venv
+build
+dist
+*.whl
+*.egg-info
