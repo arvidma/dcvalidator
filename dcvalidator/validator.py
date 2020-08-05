@@ -215,7 +215,7 @@ class Validator:
 			faulty[contentname] = 0.0
 
 
-			c = yaml.load(contents[content])
+			c = yaml.safe_load(contents[content])
 
 			if 'Typing mistakes' in labelArray:
 				err_message = ""
