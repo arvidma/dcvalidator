@@ -10,9 +10,9 @@ import os.path
 import hashlib
 import json
 import sys
-import yamlreader
 import Levenshtein
-import typoMistake
+from . import yamlreader
+from . import typoMistake
 try:
 	import kafka
 except:

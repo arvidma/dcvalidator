@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-from validator import Validator
+from .validator import Validator
 
 def main():
     if len(sys.argv) == 1:
