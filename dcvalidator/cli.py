@@ -14,11 +14,10 @@ def main():
         print(" -f: filebased; load docker-compose from a docker-compose file")
         print(" -fl: filebased list; load paths or URLs as lines from a text file")
         print(" -u: urlbased; direct URL or path specification")
-        print(" -e: eventing; send results to Kafka endpoint with space and series selection")
         print(
             " -fi: filters; you can select filters as any as you want:\n    for more info flag --fih might be helpful!")
         print(
-            "Example: {} -a elastest/deploy -e kafka.cloudlab.zhaw.ch/user-1-docker_label_consistency/nightly -fi 'Duplicate Keys,Top level property'".format(
+            "Example: {} -a elastest/deploy -fi 'Duplicate Keys,Top level property'".format(
                 sys.argv[0]))
         sys.exit(1)
 
@@ -26,7 +25,6 @@ def main():
     filebasedlist = None
     filebased = None
     urlbased = None
-    eventing = None
     filters = []
 
     i = 1
@@ -46,16 +44,11 @@ def main():
             print(
                 "Whole list of fliters is here!\n \n ====>  'Duplicate Keys','Top level property','Duplicate ports','Container name','Labels','Typing mistakes', 'DNS', 'Duplicate expose'\n \n How to use it? \n\n EZ!\n\n Something like this\n\n python validator-cli.py -a elastest/deploy -fi 'Duplicate Keys,Top level property' \n\n\t *****Warning*****\n\n Makesure that you enter this arg as a string!\n\n\t *****************")
             sys.exit(1)
-        elif sys.argv[i] == "-e":
-            eventing = sys.argv[i + 1]
-            if not "kafka" in dir():
-                print("warning: eventing disabled")
-                eventing = None
 
         i += 1
 
     my_validator = Validator()
-    my_validator.validator(autosearch, filebasedlist, urlbased, eventing, filebased, filters)
+    my_validator.validator(autosearch, filebasedlist, urlbased, filebased, filters)
 
 
 if __name__ == "__main__":

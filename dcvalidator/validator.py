@@ -15,11 +15,6 @@ import yaml
 from . import typoMistake
 from . import yamlreader
 
-try:
-    import kafka
-except:
-    print("Warning: no kafka support")
-
 RATIO = 0.6
 
 
@@ -595,36 +590,11 @@ class Validator:
 
         return numservices, alltags, faulty
 
-    def __sendmessage__(self, host, label, series, message):
-        if kafka.__version__.startswith("0"):
-            c = kafka.client.KafkaClient(hosts=[host])
-            if series:
-                p = kafka.producer.keyed.KeyedProducer(c)
-            else:
-                p = kafka.producer.simple.SimpleProducer(c)
-        else:
-            p = kafka.KafkaProducer(bootstrap_servers=host)
-        success = False
-        t = 0.2
-        while not success:
-            try:
-                if kafka.__version__.startswith("0"):
-                    if series:
-                        p.send_messages(label, series.encode("utf-8"), message.encode("utf-8"))
-                    else:
-                        p.send_messages(label, message.encode("utf-8"))
-                else:
-                    p.send(label, key=series.encode("utf-8"), value=message.encode("utf-8"))
-                    p.close()
-                self.__log_writer__("success")
-                success = True
-            except Exception as e:
-                self.__log_writer__("error (sleep {})".format(t) + str(e))
-                time.sleep(t)
-                t *= 2
+    def validator(self, autosearch, filebasedlist, urlbased, filebased=None,
+                  labelArray=None):
+        if labelArray is None:
+            labelArray = []
 
-    def validator(self, autosearch, filebasedlist, urlbased, eventing, filebased=None,
-                  labelArray=[]):
         composefiles = []
 
         d_start = time.time()
@@ -664,9 +634,4 @@ class Validator:
         for label in alltags:
             d[label] = float(alltags[label])
         d.update(faulty)
-        if eventing:
-            kafka, space, series = eventing.split("/")
-            print("sending message... {}".format(d))
-            self.__sendmessage__(kafka, space, series, json.dumps(d))
-        else:
-            print("not sending message... {}".format(d))
+        print(d)
