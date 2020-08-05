@@ -38,8 +38,9 @@ yaml_overwrited = YAML(typ='safe')
 
 def reader(content):
     try:
-        parsed = yaml_overwrited.safe_load(content)
+        parsed = yaml_overwrited.load(content)
         print("syntax is ok")
         return parsed
-    except:
+    except Exception as e:
+        print(e)
         print("yaml syntax error")

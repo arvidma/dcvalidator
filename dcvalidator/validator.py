@@ -185,7 +185,7 @@ class Validator:
                     if [ratio, tag] not in tmp:
                         tmp.append([ratio, tag])
             if len(tmp) > 0:
-                tmp.sort(key=lambda tmp: tmp[0], reverse=True)
+                tmp.sort(key=lambda _tmp: _tmp[0], reverse=True)
                 tag_list_similarity[generalTag] = tmp
         for eachTag in tag_list_similarity:
             pair = 0
