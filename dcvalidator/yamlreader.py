@@ -1,13 +1,13 @@
 from ruamel.yaml import YAML
 from ruamel.yaml.constructor import SafeConstructor
 # def construct_yaml_map(self, node):
-# 	# test if there are duplicate node keys
-# 	data = []
-# 	yield data
-# 	for key_node, value_node in node.value:
-# 		key = self.construct_object(key_node, deep=True)
-# 		val = self.construct_object(value_node, deep=True)
-# 		data.append((key, val))
+#       # test if there are duplicate node keys
+#       data = []
+#       yield data
+#       for key_node, value_node in node.value:
+#               key = self.construct_object(key_node, deep=True)
+#               val = self.construct_object(value_node, deep=True)
+#               data.append((key, val))
 def construct_yaml_map(self, node):
     # test if there are duplicate node keys
     keys = set()
